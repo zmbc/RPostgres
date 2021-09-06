@@ -92,8 +92,8 @@ con2 <- dbConnect(RPostgres::Postgres())
 con3 <- dbConnect(RPostgres::Postgres())
 
 rs1 <- RPostgres::dbSendQueryAsync(con, "SELECT avg(a.disp) FROM mtcars as a WHERE a.cyl = 4")
-rs2 <- RPostgres::dbSendQueryAsync(con, "SELECT avg(a.disp) FROM mtcars as a WHERE a.cyl = 6")
-rs3 <- RPostgres::dbSendQueryAsync(con, "SELECT avg(a.disp) FROM mtcars as a WHERE a.cyl = 8")
+rs2 <- RPostgres::dbSendQueryAsync(con2, "SELECT avg(a.disp) FROM mtcars as a WHERE a.cyl = 6")
+rs3 <- RPostgres::dbSendQueryAsync(con3, "SELECT avg(a.disp) FROM mtcars as a WHERE a.cyl = 8")
 
 while(!all(RPostgres::dbHasExecutedQuery(rs1), RPostgres::dbHasExecutedQuery(rs2), RPostgres::dbHasExecutedQuery(rs3))) {
   Sys.sleep(0.1)
